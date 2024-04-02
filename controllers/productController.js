@@ -160,7 +160,7 @@ module.exports = {
                 }
             }
         }
-        if(req.body.brandname && !req.body.logo){
+        if (req.body.brandname && !req.body.logo) {
             return next(new ErrorHandler("Logo is required to update brand name", 400));
         }
         if (req.body.specifications) {
@@ -309,6 +309,20 @@ module.exports = {
             useFindAndModify: false,
         });
 
+        res.status(200).json({
+            success: true,
+        });
+    }),
+
+    updateProductStock: asyncErrorHandler(async (req, res, next) => {
+        const { id, quantity } = req.body
+        // console.log("Updating stock", id, quantity)
+        const product = await Product.findById(id);
+        if (!product) {
+            return next(new ErrorHandler("Product Not Found", 404));
+        }
+        product.stock -= quantity;
+        await product.save({ validateBeforeSave: false });
         res.status(200).json({
             success: true,
         });
