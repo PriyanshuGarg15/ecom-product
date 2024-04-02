@@ -160,6 +160,9 @@ module.exports = {
                 }
             }
         }
+        if(req.body.brandname && !req.body.logo){
+            return next(new ErrorHandler("Logo is required to update brand name", 400));
+        }
         if (req.body.specifications) {
             let specs = [];
             req.body.specifications.forEach((s) => {
