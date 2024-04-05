@@ -4,7 +4,7 @@ The Product microservice is responsible for managing product-related operations,
 
 ## Access
 
-The microservice is hosted on AWS at the following URL:
+The microservice is hosted on AWS ECS Docker at the following URL:
 
 http://ecom-user-lb-321143357.ap-south-1.elb.amazonaws.com:4041
 
